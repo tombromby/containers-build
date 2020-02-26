@@ -2,9 +2,9 @@ version: 0.2
 phases:
   build:
     commands:
-      - docker build -t 590312749310.dkr.ecr.us-east-2.amazonaws.com/tomb .
+      - docker build -t $REPOSITORY_URI .
   post_build:
     commands:
       - aws ecr get-login --region us-east-2 --no-include-email
       - docker login -u AWS -p $ECR_KEY https://590312749310.dkr.ecr.us-east-2.amazonaws.com
-      - docker push 590312749310.dkr.ecr.us-east-2.amazonaws.com/tomb
+      - docker push $REPOSITORY_URI
